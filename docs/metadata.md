@@ -1,4 +1,4 @@
-# Data Cleaning Metadata {style="color: black"}
+# Data Cleaning Metadata
 
 ## Overview
 
