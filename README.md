@@ -34,7 +34,7 @@ This repository contains the analysis and report on NIBRS adoption across U.S. l
 
 -   R (version 4.0 or higher)
 -   Quarto
--   R packages: \`tidyverse\`, \`gt\`, \`scales\`, \`knitr\`, \`ggplot2\`, \`lubridate\`, \`ggthemes\`, \`kableExtra\`
+-   R packages: `tidyverse`, `gt`, `scales`, `knitr`, `ggplot2`, `lubridate`, `ggthemes`, `kableExtra`
 
 ## Author
 
