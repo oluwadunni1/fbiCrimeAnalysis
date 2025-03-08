@@ -1,7 +1,0 @@
-"0","# Compute state-level summary
-state_summary <- agencies %>%
-"
-"2","Error: unexpected symbol in:
-""# Compute state-level summary
-state_summary""
-"
