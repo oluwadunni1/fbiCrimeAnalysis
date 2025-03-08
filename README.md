@@ -4,7 +4,7 @@ This repository contains the analysis and report on NIBRS adoption across U.S. l
 
 ## Project Structure
 
--   **data/**: Data files (raw and processed excluded if sensitive; contact author for access).
+-   **data/**: Data files
     -   `raw/`: Original data files.
     -   `processed/`: Cleaned data files.
 -   **scripts/**: R scripts for data import, cleaning, and analysis.
