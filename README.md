@@ -18,7 +18,7 @@ This repository contains the analysis and report on NIBRS adoption across U.S. l
     -   `region.png`, `state_adoption_map.png`: Tableau visuals.
     -   `fbi_crime_analysis_files/`: Auto-generated folder containing resources (e.g., plot images) for the HTML.
 -   **output/**: Rendered outputs from analysis script.
-    -   `tables/`: Table outputs (CSV and HTML).
+    -   `tables/`: Table outputs (CSV).
     -   `visuals/`: Plot outputs (PNG).
 
 ## How to Use
