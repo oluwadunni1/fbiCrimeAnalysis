@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Oluwadunni">
+<meta name="dcterms.date" content="2025-03-03">
+
+<title>NIBRS Adoption Analysis Report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="FBI_crime_analysis_files/libs/clipboard/clipboard.min.js"></script>
+<script src="FBI_crime_analysis_files/libs/quarto-html/quarto.js"></script>
+<script src="FBI_crime_analysis_files/libs/quarto-html/popper.min.js"></script>
+<script src="FBI_crime_analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="FBI_crime_analysis_files/libs/quarto-html/anchor.min.js"></script>
+<link href="FBI_crime_analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="FBI_crime_analysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="FBI_crime_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="FBI_crime_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="FBI_crime_analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data Overview</a></li>
+  <li><a href="#nationwide-adoption-of-nibrs" id="toc-nationwide-adoption-of-nibrs" class="nav-link" data-scroll-target="#nationwide-adoption-of-nibrs">Nationwide Adoption of NIBRS</a>
+  <ul class="collapse">
+  <li><a href="#geographic-distribution-of-agencies" id="toc-geographic-distribution-of-agencies" class="nav-link" data-scroll-target="#geographic-distribution-of-agencies">Geographic Distribution of Agencies</a></li>
+  </ul></li>
+  <li><a href="#state-level-analysis" id="toc-state-level-analysis" class="nav-link" data-scroll-target="#state-level-analysis">State-Level Analysis</a>
+  <ul class="collapse">
+  <li><a href="#observations" id="toc-observations" class="nav-link" data-scroll-target="#observations">Observations</a></li>
+  <li><a href="#agency-distribution-insights" id="toc-agency-distribution-insights" class="nav-link" data-scroll-target="#agency-distribution-insights">Agency Distribution insights</a></li>
+  <li><a href="#examining-low-adoption-states-the-bottom-three" id="toc-examining-low-adoption-states-the-bottom-three" class="nav-link" data-scroll-target="#examining-low-adoption-states-the-bottom-three">Examining Low Adoption States: The “Bottom Three”</a></li>
+  </ul></li>
+  <li><a href="#bridging-the-gap-strengthening-nibrs-compliance" id="toc-bridging-the-gap-strengthening-nibrs-compliance" class="nav-link" data-scroll-target="#bridging-the-gap-strengthening-nibrs-compliance">Bridging the Gap: Strengthening NIBRS Compliance</a></li>
+  <li><a href="#areas-for-future-research" id="toc-areas-for-future-research" class="nav-link" data-scroll-target="#areas-for-future-research">Areas for Future Research</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">NIBRS Adoption Analysis Report</h1>
+<p class="subtitle lead">Insights into Agency Adoption of the National Incident-Based Reporting System</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Oluwadunni </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 3, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>National Incident-Based Reporting System (NIBRS) represents a crucial advancement in crime data collection, providing greater detail and accuracy compared to older systems. This report investigates the extent to which U.S. law enforcement agencies have embraced NIBRS, analyzing adoption patterns across the nation.</p>
+<p>Seeking to answer questions such as: How do agency types vary? How are agencies distributed geographically within each state? What percentage of agencies in each state participate in NIBRS reporting? Are there any trends in NIBRS adoption?</p>
+<p>The analysis begins with a broad look at nationwide trends, then narrows down to explore state-level adoption rates and agency-specific patterns. Visualizations, including a state adoption map, agency-type distributions, and a timeline of adoption, support the findings. Additionally, summary tables highlight key adoption metrics by state, providing a clear assessment of current situation.</p>
+</section>
+<section id="data-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-overview">Data Overview</h2>
+<p>Dataset for this analysis draws from the FBI Crime Data API of law enforcement agencies in the United States covering a time period from 1985 to 2024. The dataset provides details on law enforcement agencies that have submitted data to the FBI’s Uniform Crime Reporting (UCR) Program and are displayed on the Crime Data Explorer (CDE). Key variables include:</p>
+<ul>
+<li><code>state</code>: State where the agency is located</li>
+<li><code>agency_type</code>: Type of agency (eg. City or County)</li>
+<li><code>is_nibrs</code>: Binary indicator of NIBRS adoption</li>
+<li><code>nibrs_start_date</code>: The date on which the agency began reporting data to NIBRS</li>
+</ul>
+</section>
+<section id="nationwide-adoption-of-nibrs" class="level2">
+<h2 class="anchored" data-anchor-id="nationwide-adoption-of-nibrs">Nationwide Adoption of NIBRS</h2>
+<p>Across the United States, NIBRS adoption varies significantly among law enforcement agencies. From a total of 19166 agencies analyzed, 15105 have adopted NIBRS—a national adoption rate of 78.8%. Meanwhile, 4061 agencies have yet to transition, these figures offer an initial glimpse into the scale of NIBRS implementation, showing that while progress has been made, a notable portion of agencies still rely on older reporting systems.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="FBI_crime_analysis_files/figure-html/nationwide_cumchart-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Fig1.1 illustrates the cumulative adoption trend from 1985 to 2025</em></p>
+<p>Adoption begins slowly, with only 2 agencies adopting by 1990, reflecting NIBRS’s early phase following its introduction in 1985. Growth accelerates in the 1990s, reaching 3,321 agencies by 2000, and continues steadily through 2010 (6,070 agencies). A period of slower growth follows, with annual adoptions averaging 200 agencies from 2011 to 2018, totaling 7,810 by 2018. The most significant surge occurs after 2018, with 1,473 agencies adopting in 2019, 1,564 in 2020, and a peak of 2,664 in 2021—driven by the FBI’s 2021 mandate to transition to NIBRS, phasing out the Summary Reporting System (SRS). Adoption slows thereafter with only 36 agencies adopting in 2024, reaching 15,105 by 2024</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="FBI_crime_analysis_files/figure-html/bar_in_bar-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Fig1.2 examines NIBRS adoption by agency type, using a bar-in-bar chart to compare the total number of agencies (outer bar, light gray) with the number that have adopted NIBRS (inner bar, Purple) across the six categories</em></p>
+<p>City agencies, the largest group by far, show a substantial number of adoptions but still have a notable portion yet to transition. County agencies, though fewer in number, demonstrate stronger adoption overall, reflecting a more consistent uptake. State Police agencies fall somewhere in the middle, with a moderate level of adoption. Smaller agency types, such as Tribal and University/College, stand out for their high adoption levels, possibly due to their modern systems or more recent establishment. In contrast, Other State Agencies lag behind, indicating a slower transition compared to their counterparts.</p>
+<section id="geographic-distribution-of-agencies" class="level3">
+<h3 class="anchored" data-anchor-id="geographic-distribution-of-agencies">Geographic Distribution of Agencies</h3>
+<p>To further understand adoption patterns, the following map illustrates the geographic distribution of law enforcement agencies across the US, showing their NIBRS adoption status</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="region.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Visual designed in Tableau</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Fig1.3: Bubbles represent a law enforcement agency with green dots indicating agencies that have adopted NIBRS and red dots representing those that have not.</em></p>
+<p>The Midwest and South stand out with a dense concentration of agencies, where green dots are more numerous, suggesting widespread adoption across these areas. However, noticeable clusters of red dots are visible, particularly in parts of the South, indicating regions with a higher presence of non-adopting agencies. The Northeast shows a thick scattering of agencies, but a striking number of red dots are evident, especially in certain states, hinting at a lower adoption rate in this region. The West, with a sparser distribution of agencies, appears dominated by green dots, suggesting a higher adoption presence. Notably, regions with fewer clusters of agencies, such as parts of the West, tend to show a greater proportion of green dots compared to denser regions like the Northeast and parts of the South, where red dots are more prominent. This map reveals that while adoption is widespread, non-adopting agencies are more concentrated in the Northeast and parts of the South, paving the way for a closer look at state-level patterns.</p>
+</section>
+</section>
+<section id="state-level-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="state-level-analysis">State-Level Analysis</h2>
+<p>Building on the nationwide overview, this section examines how NIBRS adoption differs across states, focusing on the distribution of agencies and their adoption rates. The visual map below illustrates each state’s agency count and NIBRS adoption rate.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="state_adoption_map.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Visual designed in Tableau</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><em>fig 1.4: Color represents the count of agencies in each state,figures show the percentage of law enforcement agencies in each state that report crime data using the National Incident-Based Reporting System (NIBRS).</em></p>
+<section id="observations" class="level3">
+<h3 class="anchored" data-anchor-id="observations">Observations</h3>
+<ul>
+<li>Several states including Virginia, Tennesse, Kentucky, and Oregon, have achieved 100% adoption, meaning all law enforcement agencies within these states exclusively report crime data through NIBRS</li>
+<li>Other high-adoption states, such as Texas (94%), Colorado (98%), and Missouri (90%), demonstrate strong integration efforts.</li>
+<li>California (74%), Maryland (89%), Louisiana (70%), and Illinois (69%) exhibit moderate NIBRS adoption rates, indicating ongoing but incomplete transition efforts.</li>
+<li>Florida (18%), Pennsylvania (12%), and New York (31%) stand out as the least compliant states, with a majority of their law enforcement agencies not complying to the NIBRS.</li>
+</ul>
+</section>
+<section id="agency-distribution-insights" class="level3">
+<h3 class="anchored" data-anchor-id="agency-distribution-insights">Agency Distribution insights</h3>
+<p>The map also suggests a relationship between the number of agencies and adoption rates :</p>
+<ul>
+<li>States with fewer agencies tend to have higher adoption rates. States like Hawaii, Vermont, Rhode Island and Maine, which have relatively small numbers of law enforcement agencies, have fully transitioned to NIBRS.</li>
+<li>States with high agency counts face more challenges in achieving full adoption. Texas and Califonia, despite their progress still have some agencies that have not transitioned.</li>
+<li>New York, Pennsylvania, and Florida, which have among the highest numbers of law enforcement agencies, also exhibit some of the lowest adoption rates.</li>
+</ul>
+<p>To explore this hypothesis further, a correlation analysis was conducted between agency counts and NIBRS adoption rates. The results show a moderate negative correlation (coefficient: -0.48), with statistical significance (p = 0.00039). This indicates that states with more agencies are less likely to achieve high adoption rates, possibly due to logistical or coordination challenges.</p>
+<p>A scatterplot (Figure 1.4) illustrates this relationship. Texas, with a high agency count and 94% adoption, and Pennsylvania, with a similarly high count but only 12% adoption, highlight the variability within this trend. This analysis sets the stage for a closer look at states struggling with adoption.</p>
+<p><img src="FBI_crime_analysis_files/figure-html/correlation%20plot-1.png" class="img-fluid" width="672"></p>
+<p><em>fig 1.5: Scatterplot showing the relationship between NIBRS adoption rates and the number of law enforcement agencies per state. Each bubble representing a state</em></p>
+</section>
+<section id="examining-low-adoption-states-the-bottom-three" class="level3">
+<h3 class="anchored" data-anchor-id="examining-low-adoption-states-the-bottom-three">Examining Low Adoption States: The “Bottom Three”</h3>
+<p>In the Northeast, Pennsylvania (11.6%) and New York (31.4%) lag significantly in NIBRS adoption despite being surrounded by high-performing states like Connecticut and Vermont, both at 100%, reflecting a regional patchwork where large agency counts and urban-rural divides may hinder progress. Meanwhile, in the Southeast, Florida (17.5%) stands out as a stark underperformer compared to neighbors like South Carolina (99.8%) and Georgia (75.3%), its low adoption contrasting with the South’s generally stronger shift toward modern reporting standards. This section examines these “bottom three” states—Pennsylvania, New York, and Florida—which collectively account for 57.5% of all U.S. law enforcement agencies yet to transition to NIBRS (2,336 out of 4,061 non-adopters) and represent 14.7% of agencies nationwide (2,825 out of 19,166)</p>
+<p>The following highlight table (Table 1.1) summarizes the adoption statistics for the bottom three states:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="vycgtflqut" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vycgtflqut table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vycgtflqut thead, #vycgtflqut tbody, #vycgtflqut tfoot, #vycgtflqut tr, #vycgtflqut td, #vycgtflqut th {
+  border-style: none;
+}
+
+#vycgtflqut p {
+  margin: 0;
+  padding: 0;
+}
+
+#vycgtflqut .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: hidden;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: hidden;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vycgtflqut .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vycgtflqut .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vycgtflqut .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vycgtflqut .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vycgtflqut .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vycgtflqut .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vycgtflqut .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vycgtflqut .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vycgtflqut .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vycgtflqut .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vycgtflqut .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vycgtflqut .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vycgtflqut .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vycgtflqut .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vycgtflqut .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vycgtflqut .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vycgtflqut .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vycgtflqut .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vycgtflqut .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vycgtflqut .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vycgtflqut .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vycgtflqut .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vycgtflqut .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vycgtflqut .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vycgtflqut .gt_left {
+  text-align: left;
+}
+
+#vycgtflqut .gt_center {
+  text-align: center;
+}
+
+#vycgtflqut .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vycgtflqut .gt_font_normal {
+  font-weight: normal;
+}
+
+#vycgtflqut .gt_font_bold {
+  font-weight: bold;
+}
+
+#vycgtflqut .gt_font_italic {
+  font-style: italic;
+}
+
+#vycgtflqut .gt_super {
+  font-size: 65%;
+}
+
+#vycgtflqut .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vycgtflqut .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vycgtflqut .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vycgtflqut .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vycgtflqut .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vycgtflqut .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vycgtflqut .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vycgtflqut .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vycgtflqut div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal"></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border"><em>Bottom 3 States by Adoption Rate</em></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="state" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">State</th>
+<th id="total_agencies" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Total Agencies</th>
+<th id="nibrs_adopting" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Adopting Agencies</th>
+<th id="non_nibrs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Non-Adopting Agencies</th>
+<th id="nibrs_percent" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">% Adoption</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="state" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Pennsylvania</td>
+<td class="gt_row gt_right" headers="total_agencies" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">1,477</td>
+<td class="gt_row gt_right" headers="nibrs_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">171</td>
+<td class="gt_row gt_right" headers="non_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">1,306</td>
+<td class="gt_row gt_right" headers="nibrs_percent" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #EB525F; color: #FFFFFF">11.6%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="state" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Florida</td>
+<td class="gt_row gt_right gt_striped" headers="total_agencies" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">758</td>
+<td class="gt_row gt_right gt_striped" headers="nibrs_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">133</td>
+<td class="gt_row gt_right gt_striped" headers="non_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">625</td>
+<td class="gt_row gt_right gt_striped" headers="nibrs_percent" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #F56E5E; color: #FFFFFF">17.5%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="state" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">New York</td>
+<td class="gt_row gt_right" headers="total_agencies" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">590</td>
+<td class="gt_row gt_right" headers="nibrs_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">185</td>
+<td class="gt_row gt_right" headers="non_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">405</td>
+<td class="gt_row gt_right" headers="nibrs_percent" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #FFB061; color: #000000">31.4%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><em>Table1.1</em></p>
+<p>Next we assess the cummulative adoption timeline to identify patterns and inflection points, visualized in fig 1.6</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="FBI_crime_analysis_files/figure-html/bottomchart-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Fig 1.6 illustrates the cummulative adoption trend for the bottom three states from 2012-2024</em></p>
+<p>While national adoption commenced in 1985, these states recorded no transition until 2013, lagging over three decades behind early adopters. Adoption remained neglible until sharp increases between 2019 and 2021 in alignment with the FBI’s 2021 mandate. Pennsylvania shows steady growth from 2013 onward, reaching 171 adopters by 2024. New York’s adoption surged in 2019, climbing to 185 by 2024, while Florida’s transition began later, in 2021, achieving 133 adopters. These late starts and uneven trajectories suggest delayed policy prioritization or resource allocation, contrasting with the national trend of earlier, more consistent adoption.</p>
+<p>Finally, we examine agency-type distributions within each state to pinpoint specific adoption barriers, presented in Tables 1.3–1.5:</p>
+<div id="odcskdzxui" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#odcskdzxui table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#odcskdzxui thead, #odcskdzxui tbody, #odcskdzxui tfoot, #odcskdzxui tr, #odcskdzxui td, #odcskdzxui th {
+  border-style: none;
+}
+
+#odcskdzxui p {
+  margin: 0;
+  padding: 0;
+}
+
+#odcskdzxui .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: hidden;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: hidden;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#odcskdzxui .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#odcskdzxui .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#odcskdzxui .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#odcskdzxui .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#odcskdzxui .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#odcskdzxui .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#odcskdzxui .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#odcskdzxui .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#odcskdzxui .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#odcskdzxui .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#odcskdzxui .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#odcskdzxui .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#odcskdzxui .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#odcskdzxui .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#odcskdzxui .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#odcskdzxui .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#odcskdzxui .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#odcskdzxui .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#odcskdzxui .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#odcskdzxui .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#odcskdzxui .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#odcskdzxui .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#odcskdzxui .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#odcskdzxui .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#odcskdzxui .gt_left {
+  text-align: left;
+}
+
+#odcskdzxui .gt_center {
+  text-align: center;
+}
+
+#odcskdzxui .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#odcskdzxui .gt_font_normal {
+  font-weight: normal;
+}
+
+#odcskdzxui .gt_font_bold {
+  font-weight: bold;
+}
+
+#odcskdzxui .gt_font_italic {
+  font-style: italic;
+}
+
+#odcskdzxui .gt_super {
+  font-size: 65%;
+}
+
+#odcskdzxui .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#odcskdzxui .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#odcskdzxui .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#odcskdzxui .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#odcskdzxui .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#odcskdzxui .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#odcskdzxui .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#odcskdzxui .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#odcskdzxui div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal"></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border"><em>Pennsylvania: Agency-Type Distribution</em></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="agency_type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Agency Type</th>
+<th id="total_count" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Total Count</th>
+<th id="count_adopting_nibrs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Adopting NIBRS</th>
+<th id="count_non_adopting" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Non-Adopting Count</th>
+<th id="adoption_rate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">% Adoption</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">City</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">934</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">97</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">837</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #E65235; color: #FFFFFF">10.4%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">County</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">42</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">2</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">40</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #DE412D; color: #FFFFFF">4.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">State Police</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">135</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">67</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">68</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #EFCE75; color: #000000">49.6%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">University or College</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">80</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">1</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">79</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #D93529; color: #FFFFFF">1.2%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Other State Agencies</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">286</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">4</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">282</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #D93529; color: #FFFFFF">1.4%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p><em>Table 1.2 Pennsylvania Agency-Type Distribution</em></p>
+<p>Pennsylvania, with the highest number of agencies among the bottom three and joint highest nationally, lags significantly in adoption. City agencies, which make up the largest share, have an adoption rate of just 10.4%, meaning nearly nine out of ten have yet to transition. County agencies are even further behind, with only 4.8% adopting. Universities and college agencies also show minimal progress, sitting below 2%. The state police, however, stand out as an exception, with nearly half (49.6%) of their agencies adopting, though this still trails behind the 75.3% seen nationwide.</p>
+<div id="eglicvfozl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eglicvfozl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#eglicvfozl thead, #eglicvfozl tbody, #eglicvfozl tfoot, #eglicvfozl tr, #eglicvfozl td, #eglicvfozl th {
+  border-style: none;
+}
+
+#eglicvfozl p {
+  margin: 0;
+  padding: 0;
+}
+
+#eglicvfozl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: hidden;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: hidden;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#eglicvfozl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#eglicvfozl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#eglicvfozl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eglicvfozl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eglicvfozl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eglicvfozl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eglicvfozl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eglicvfozl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#eglicvfozl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#eglicvfozl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eglicvfozl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eglicvfozl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eglicvfozl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eglicvfozl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eglicvfozl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#eglicvfozl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#eglicvfozl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#eglicvfozl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eglicvfozl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#eglicvfozl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eglicvfozl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eglicvfozl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eglicvfozl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eglicvfozl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eglicvfozl .gt_left {
+  text-align: left;
+}
+
+#eglicvfozl .gt_center {
+  text-align: center;
+}
+
+#eglicvfozl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eglicvfozl .gt_font_normal {
+  font-weight: normal;
+}
+
+#eglicvfozl .gt_font_bold {
+  font-weight: bold;
+}
+
+#eglicvfozl .gt_font_italic {
+  font-style: italic;
+}
+
+#eglicvfozl .gt_super {
+  font-size: 65%;
+}
+
+#eglicvfozl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#eglicvfozl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#eglicvfozl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#eglicvfozl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#eglicvfozl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#eglicvfozl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#eglicvfozl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#eglicvfozl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#eglicvfozl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal"></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border"><em>New York: Agency-Type Distribution</em></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="agency_type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Agency Type</th>
+<th id="total_count" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Total Count</th>
+<th id="count_adopting_nibrs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Adopting NIBRS</th>
+<th id="count_non_adopting" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Non-Adopting Count</th>
+<th id="adoption_rate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">% Adoption</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">City</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">415</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">133</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">282</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #FA9555; color: #000000">32.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">County</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">56</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">34</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">22</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #D5ED8A; color: #000000">60.7%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">State Police</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">58</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">0</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">58</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #D73027; color: #FFFFFF">0.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Tribal</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">1</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">1</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">0</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #1A9850; color: #FFFFFF">100.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">University or College</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">30</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">14</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">16</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #F4C56F; color: #000000">46.7%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Other State Agencies</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">30</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">3</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">27</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #E65135; color: #FFFFFF">10.0%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p><em>Table 1.3 New york Agency-Type Distribution</em></p>
+<p>New York is slightly ahead of Pennsylvania but still well below national benchmarks. City agencies have an adoption rate of 32%, significantly lower than the 78.6% nationwide. County agencies fare much better, with 60.7% adopting, though they still trail the national average of 90.3%. University agencies are close to the halfway mark at 46.7%. Like Florida, state police remain completely unadopted, far below the 75.3% national level. On the contrary, New York’s single tribal agency has fully transitioned, aligning with the strong nationwide adoption in that category. Overall, the state shows mixed progress, with certain agency types moving forward while others remain significantly behind.</p>
+<div id="trodxpglqo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#trodxpglqo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#trodxpglqo thead, #trodxpglqo tbody, #trodxpglqo tfoot, #trodxpglqo tr, #trodxpglqo td, #trodxpglqo th {
+  border-style: none;
+}
+
+#trodxpglqo p {
+  margin: 0;
+  padding: 0;
+}
+
+#trodxpglqo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: hidden;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: hidden;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#trodxpglqo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#trodxpglqo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#trodxpglqo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#trodxpglqo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#trodxpglqo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#trodxpglqo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#trodxpglqo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #495057;
+  vertical-align: bottom;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#trodxpglqo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#trodxpglqo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#trodxpglqo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #495057;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#trodxpglqo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#trodxpglqo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#trodxpglqo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#trodxpglqo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#trodxpglqo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#trodxpglqo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#trodxpglqo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#trodxpglqo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#trodxpglqo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#trodxpglqo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#trodxpglqo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#trodxpglqo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#trodxpglqo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#trodxpglqo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#trodxpglqo .gt_left {
+  text-align: left;
+}
+
+#trodxpglqo .gt_center {
+  text-align: center;
+}
+
+#trodxpglqo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#trodxpglqo .gt_font_normal {
+  font-weight: normal;
+}
+
+#trodxpglqo .gt_font_bold {
+  font-weight: bold;
+}
+
+#trodxpglqo .gt_font_italic {
+  font-style: italic;
+}
+
+#trodxpglqo .gt_super {
+  font-size: 65%;
+}
+
+#trodxpglqo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#trodxpglqo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#trodxpglqo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#trodxpglqo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#trodxpglqo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#trodxpglqo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#trodxpglqo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#trodxpglqo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#trodxpglqo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal"></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border"><em>Florida: Agency-Type Distribution</em></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="agency_type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Agency Type</th>
+<th id="total_count" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Total Count</th>
+<th id="count_adopting_nibrs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Adopting NIBRS</th>
+<th id="count_non_adopting" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">Non-Adopting Count</th>
+<th id="adoption_rate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #F8F9FA; font-weight: bold" scope="col">% Adoption</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">City</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">297</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">85</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">212</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #F98A50; color: #000000">28.6%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">County</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">66</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">32</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">34</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #F1CA72; color: #000000">48.5%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">State Police</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">67</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">0</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">67</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #D73027; color: #FFFFFF">0.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Tribal</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">2</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">2</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">0</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #1A9850; color: #FFFFFF">100.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">University or College</td>
+<td class="gt_row gt_right" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">19</td>
+<td class="gt_row gt_right" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">9</td>
+<td class="gt_row gt_right" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">10</td>
+<td class="gt_row gt_right" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #F2C770; color: #000000">47.4%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="agency_type" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">Other State Agencies</td>
+<td class="gt_row gt_right gt_striped" headers="total_count" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">307</td>
+<td class="gt_row gt_right gt_striped" headers="count_adopting_nibrs" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">5</td>
+<td class="gt_row gt_right gt_striped" headers="count_non_adopting" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6">302</td>
+<td class="gt_row gt_right gt_striped" headers="adoption_rate" style="border-top-width: 1px; border-top-style: solid; border-top-color: #dee2e6; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #dee2e6; background-color: #D93629; color: #FFFFFF">1.6%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p><em>Table 1.4 Florida Agency-Type Distribution</em></p>
+<p>Florida’s adoption rates show a slightly better picture than Pennsylvania but still fall short of national trends. City agencies are at 28.6%, well below the 78.6% national level. County agencies are making more progress, with 48.5% adopting, though this is still a significant gap from the 90.3% seen nationwide. University agencies are at 47.4%, similar to New York but trailing the 79.1% national average. The state police remain entirely unadopted, mirroring the situation in New York and falling far behind the 75.3% national rate. A striking factor in Florida is its large number of Other state agencies, where only 1.6% have transitioned—one of the lowest adoption rates in this category. While Florida is not the furthest behind overall, its mix of agency types, particularly the high number of smaller agencies with lower adoption, contributes to its slower progress.</p>
+</section>
+</section>
+<section id="bridging-the-gap-strengthening-nibrs-compliance" class="level2">
+<h2 class="anchored" data-anchor-id="bridging-the-gap-strengthening-nibrs-compliance">Bridging the Gap: Strengthening NIBRS Compliance</h2>
+<p>The transition to the National Incident-Based Reporting System (NIBRS) represents a pivotal step toward modernizing crime data collection in the United States, offering significant benefits for law enforcement, policymakers, researchers, and communities.Some of these benefits include enhanced data granularity, better policy and research outcomes as well as increased transparency. However, with 4,061 agencies yet to adopt NIBRS out of 19,166 nationwide, and significant disparities in states like the “bottom three” among others there is a clear need for targeted interventions to increase adoption rates in these lagging states and across the nation as a whole. To bridge the adoption gap, the following targeted solutions are proposed for priority states, alongside nationwide strategies to ensure full adoption:</p>
+<ol type="1">
+<li>Address Coordination Challenges in High-Density States</li>
+</ol>
+<ul>
+<li><p>Establish state-level coordinators to streamline communication and data submission among agencies.</p></li>
+<li><p>Develop targeted outreach programs for city agencies, which represent the largest non-adopting group in Pennsylvania (10.4%), New York (31.4%), and Florida (17.6%). These programs should offer dedicated funding and technical support to address unique challenges, such as high caseloads.</p></li>
+</ul>
+<ol start="2" type="1">
+<li>Encourage State-Level Mandates and Incentives</li>
+</ol>
+<ul>
+<li><p>Encourage state governments with low adoption rates to mandate NIBRS adoption with clear timelines, similar to the FBI’s 2021 mandate that drove a surge in adoptions (5,701 agencies from 2019–2021).</p></li>
+<li><p>Offer state-level incentives, such as additional funding for public safety programs, to agencies that meet adoption deadlines.</p></li>
+</ul>
+<ol start="3" type="1">
+<li>Create a National NIBRS Adoption Summit</li>
+</ol>
+<ul>
+<li>Host an annual summit bringing together law enforcement leaders, policymakers, and technology providers. The agenda should include sharing success stories, such as the Midwest’s steady adoption trajectory to inspire lagging states and regions, like the Northeast, to adopt best practices as well as include dedicated sessions for low-adoption states to discuss challenges and develop customized action plans, leveraging insights from state-level timelines (e.g., Pennsylvania’s late surge post-2018).</li>
+</ul>
+<ol start="4" type="1">
+<li>Build a Peer Support Network</li>
+</ol>
+<ul>
+<li><p>Use regional data (e.g., the West’s high adoption rates) to encourage collaboration within regions, ensuring solutions are tailored to local contexts.</p></li>
+<li><p>Establish a peer support network where high-adoption states mentor low-adoption states.</p></li>
+</ul>
+</section>
+<section id="areas-for-future-research" class="level2">
+<h2 class="anchored" data-anchor-id="areas-for-future-research">Areas for Future Research</h2>
+<p>To build on the findings in this report, future research could examine whether regions with higher adoption see measurable improvements in crime prevention, and investigate how collaborative networks between states could be scaled to support diverse areas more effectively.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

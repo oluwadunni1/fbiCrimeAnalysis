@@ -1,0 +1,37 @@
+"ori","county","latitude","longitude","state_abbr","state","agency_name","agency_type","is_nibrs","nibrs_start_date","year"
+"CA0360100","SAN BERNARDINO",34.892834,-117.02627,"CA","California","Barstow Police Department","City",FALSE,2024-02-01,2024
+"GA1380000","TOOMBS",32.20298,-82.34015,"GA","Georgia","Toombs County Sheriff's Office","County",FALSE,2024-01-01,2024
+"IL0501600","LA SALLE",41.343341,-88.885931,"IL","Illinois","Tonica Police Department","City",FALSE,2024-01-01,2024
+"MD0050000","CALVERT",38.539024,-76.58306,"MD","Maryland","Calvert County Sheriff's Office","County",FALSE,2024-01-01,2024
+"MD0070600","CARROLL",39.657906,-77.17434,"MD","Maryland","Taneytown Police Department","City",FALSE,2024-01-01,2024
+"MD0200000","SOMERSET",38.128025,-75.703735,"MD","Maryland","Somerset County Sheriff's Office","County",FALSE,2024-01-01,2024
+"MD0040600","NOT SPECIFIED",39.23499,-76.61133,"MD","Maryland","Baltimore City Sheriff's Office","Miscellaneous",FALSE,2024-01-01,2024
+"MS0150000","COPIAH",31.866915,-90.448758,"MS","Mississippi","Copiah County Sheriff's Office","County",FALSE,2024-01-01,2024
+"MS0640000","SIMPSON",31.902505,-89.917709,"MS","Mississippi","Simpson County Sheriff's Office","County",FALSE,2024-01-01,2024
+"MO0731600","NEWTON",36.8808881666667,-94.3042816666667,"MO","Missouri","Neosho School District","Miscellaneous",FALSE,2024-02-01,2024
+"NJ0201100","UNION",40.708298,-74.40446,"NJ","New Jersey","New Providence Police Department","City",FALSE,2024-01-01,2024
+"NJ0024100","BERGEN",40.959648,-74.07486,"NJ","New Jersey","Norwood Police Department","City",FALSE,2024-01-01,2024
+"NJ0020900","BERGEN",40.955627,-73.96486,"NJ","New Jersey","Demarest Police Department","City",FALSE,2024-01-01,2024
+"NJ0131600","MONMOUTH",40.287056,-74.152446,"NJ","New Jersey","Freehold Township Police Department","City",FALSE,2024-02-01,2024
+"OH0185500","CUYAHOGA",41.44305,-81.53607,"OH","Ohio","Warrensville Heights Police Department","City",FALSE,2024-02-01,2024
+"OH0181600","CUYAHOGA",41.4838434126984,-81.6567685238095,"OH","Ohio","Cuyahoga Heights","Miscellaneous",FALSE,2024-02-01,2024
+"OH0311600","HAMILTON",39.196927,-84.544187,"OH","Ohio","Harrison Police Department","City",FALSE,2024-01-01,2024
+"OH0860000","WILLIAMS",41.564958,-84.584323,"OH","Ohio","Williams County Sheriff's Office","County",FALSE,2024-01-01,2024
+"OH0571000","MONTGOMERY",39.7641083333333,-84.2847172222222,"OH","Ohio","Oakwood Police Department, Montgomery County","City",FALSE,2024-01-01,2024
+"PA0060300","BERKS",40.278965,-75.9697,"PA","Pennsylvania","Cumru Township Police Department","City",FALSE,2024-03-01,2024
+"PA0070800","BLAIR",40.423798,-78.4321,"PA","Pennsylvania","Duncansville Police Department","City",FALSE,2024-02-01,2024
+"PA0071700","BLAIR",40.497922,-78.310636,"PA","Pennsylvania","North Woodbury Police Department","City",FALSE,2024-01-01,2024
+"PA0070100","BLAIR",40.513184,-78.40563,"PA","Pennsylvania","Altoona Police Department","City",FALSE,2024-01-01,2024
+"PA0091700","BUCKS",40.361782,-75.33911,"PA","Pennsylvania","Pennridge Regional Police Department","City",FALSE,2024-01-01,2024
+"PA0101100","BUTLER",41.058884,-80.04858,"PA","Pennsylvania","Slippery Rock University","University or College",FALSE,2024-01-01,2024
+"PA0550100","SNYDER",40.799637,-76.86337,"PA","Pennsylvania","Selinsgrove Police Department","City",FALSE,2024-01-01,2024
+"PA0025200","ALLEGHENY",40.494316,-79.86006,"PA","Pennsylvania","Blawnox Police Department","City",FALSE,2024-02-01,2024
+"PA0020D00","ALLEGHENY",40.272415,-79.82319,"PA","Pennsylvania","Elizabeth Township Police Department","City",FALSE,2024-01-01,2024
+"PA0655300","WESTMORELAND",40.311068,-79.466688,"PA","Pennsylvania","St. Clair Township Police Department","City",FALSE,2024-02-01,2024
+"TX0141700","BELL",31.042303,-97.481374,"TX","Texas","Troy Police Department","City",FALSE,2024-01-01,2024
+"TX0141100","BELL",31.042303,-97.481374,"TX","Texas","Holland Police Department","City",FALSE,2024-01-01,2024
+"TX101619E","HARRIS",29.8184064736842,-95.3814218947368,"TX","Texas","Houston Christian University","University or College",FALSE,2024-01-01,2024
+"TX1521300","LUBBOCK",33.611469,-101.819944,"TX","Texas","Buffalo Springs Lake Police Department","City",FALSE,2024-01-01,2024
+"TX0842300","GALVESTON",29.228364,-94.895428,"TX","Texas","College of the Mainland","University or College",FALSE,2024-01-01,2024
+"WADI06600","NOT SPECIFIED",47.85288,-122.5703,"WA","Washington","Port Gamble S'Klallam Tribal","Tribal",FALSE,2024-01-01,2024
+"WY0040200","CARBON",41.70359,-106.933153,"WY","Wyoming","Saratoga Police Department","City",FALSE,2024-01-01,2024

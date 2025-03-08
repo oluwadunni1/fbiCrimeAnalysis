@@ -1,0 +1,54 @@
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(lubridate)
+
+# Step 1: Create a complete_months dataframe with all months and years in the dataset
+complete_months <- vehicle_sales_clean %>%
+  distinct(year) %>%
+  expand_grid(month = month.name) %>%
+  mutate(
+    month = factor(month, levels = month.name) # Ensure consistent factor levels
+  )
+
+# Step 2: Group and summarize data by year and month
+monthly_data <- vehicle_sales_clean %>%
+  mutate(
+    month = factor(month, levels = month.name) # Ensure consistent factor levels
+  ) %>%
+  group_by(year, month) %>%
+  summarize(
+    sales = sum(sellingprice, na.rm = TRUE),
+    quantity = n(),
+    .groups = "drop"
+  )
+
+# Step 3: Ensure consistent factor levels for `month` in both dataframes
+monthly_data <- monthly_data %>%
+  mutate(
+    month = factor(month, levels = month.name) # Consistent factor levels
+  )
+
+# Perform the right join with explicit conversions
+joined_data <- complete_months %>%
+  mutate(
+    month = factor(month, levels = month.name) # Consistent factor levels
+  ) %>%
+  right_join(monthly_data, by = c("year", "month")) %>%
+  mutate(
+    sales = replace_na(sales, 0),
+    quantity = replace_na(quantity, 0)
+  )
+
+# Step 4: Add quarter and year columns for Tableau filtering
+final_data <- joined_data %>%
+  mutate(
+    quarter = paste0("Q", quarter(as.Date(paste(year, month, "1"), format = "%Y %B %d"))),
+    year = as.character(year)
+  )
+
+# Step 5: Export the final_data dataframe to CSV for Tableau
+write.csv(final_data, "monthly_data_for_tableau.csv", row.names = FALSE)
+
+str(complete_months)
+str(monthly_data)

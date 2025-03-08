@@ -1,0 +1,148 @@
+# 02-data-cleaning.R
+
+# Load necessary libraries
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(here)
+
+# Define the output path
+path_output <- here::here("outputs")
+
+# Step 1: Load the raw dataset
+vehicle_sales_raw <- readRDS(file.path(path_output, "vehicle_sales_raw.rds"))
+cat("Step 1: Data successfully loaded from the output folder.\n")
+
+# Step 2: Summarize the dataset for an overview
+summary(vehicle_sales_raw)
+
+# Step 3: Clean column names
+vehicle_sales_clean <- vehicle_sales_raw |>
+  clean_names()
+
+# Step 4: Inspect and clean individual columns
+
+## 4.1 Clean the 'make' column
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(
+    make = str_to_title(make) |>
+      recode(
+        "Ford Truck" = "Ford",
+        "Chev Truck" = "Chevrolet",
+        "Hyundai Tk" = "Hyundai",
+        "Vw" = "Volkswagen",
+        "Mercedes" = "Mercedes-Benz",
+        "Mercedes-B" = "Mercedes-Benz",
+        "Mazda Tk" = "Mazda",
+        "Ford Tk" = "Ford",
+        "Dodge Tk" = "Dodge",
+        "Gmc Truck" = "Gmc"
+      ),
+    make = replace(make, is.na(make), "Unknown")
+  )
+
+## 4.2 Clean the 'transmission' column
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(transmission = str_to_lower(transmission))
+
+# Step 5: Fix misaligned rows
+
+## Identify misaligned rows where 'sedan' appears in the transmission column
+misaligned_rows <- which(vehicle_sales_clean$transmission == "sedan")
+
+## Correct misaligned rows:
+vehicle_sales_clean$body[misaligned_rows] <- vehicle_sales_clean$transmission[misaligned_rows]
+vehicle_sales_clean$transmission[misaligned_rows] <- vehicle_sales_clean$vin[misaligned_rows]
+vehicle_sales_clean$vin[misaligned_rows] <- vehicle_sales_clean$state[misaligned_rows]
+vehicle_sales_clean$state[misaligned_rows] <- vehicle_sales_clean$condition[misaligned_rows]
+vehicle_sales_clean$condition[misaligned_rows] <- vehicle_sales_clean$odometer[misaligned_rows]
+vehicle_sales_clean$odometer[misaligned_rows] <- vehicle_sales_clean$color[misaligned_rows]
+vehicle_sales_clean$color[misaligned_rows] <- vehicle_sales_clean$interior[misaligned_rows]
+vehicle_sales_clean$interior[misaligned_rows] <- vehicle_sales_clean$seller[misaligned_rows]
+vehicle_sales_clean$seller[misaligned_rows] <- vehicle_sales_clean$mmr[misaligned_rows]
+vehicle_sales_clean$mmr[misaligned_rows] <- vehicle_sales_clean$sellingprice[misaligned_rows]
+vehicle_sales_clean$sellingprice[misaligned_rows] <- vehicle_sales_clean$saledate[misaligned_rows]
+vehicle_sales_clean$saledate[misaligned_rows] <- NA
+
+### Fill NA transmission values with "automatic" for misaligned rows
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(transmission = ifelse(is.na(transmission) & row_number() %in% misaligned_rows, "automatic", transmission))
+
+# Step 6: Filter rows to drop null selling price entries
+vehicle_sales_clean <- vehicle_sales_clean |>
+  filter(!is.na(sellingprice))
+
+# Step 7: Drop unnecessary columns
+vehicle_sales_clean <- vehicle_sales_clean |>
+  select(-c(trim, vin, seller, interior))
+
+# Step 8: Format the 'saledate' column to native date format
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(
+    saledate = saledate |>
+      str_remove("\\sGMT.*$") |>        # Remove the timezone and extra info
+      str_trim() |>                    # Trim whitespace
+      lubridate::parse_date_time(orders = "a b d Y H:M:S") |>  # Parse the cleaned date
+      as.Date()                        # Convert to Date format (no time)
+  )
+
+# Step 9: Convert column data types
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(
+    year = as.integer(year),
+    make = as.character(make),
+    model = as.character(model),
+    body = as.character(body),
+    transmission = as.factor(transmission),
+    state = as.factor(state),
+    condition = as.integer(condition),
+    odometer = as.numeric(odometer),
+    color = as.factor(color),
+    mmr = as.numeric(mmr),
+    sellingprice = as.numeric(sellingprice)
+  )
+
+# Step 10: Inspect and validate the 'odometer' column
+
+## Check for missing values and anomalies in 'odometer'
+sum(is.na(vehicle_sales_clean$odometer))
+sum(vehicle_sales_clean$odometer < 0)
+summary(vehicle_sales_clean$odometer)
+
+# Step 11: Validate 'year' column against 'saledate'
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(
+    saledate_year = year(saledate),
+    year_valid = year <= saledate_year
+  ) |>
+  filter(year_valid) |>
+  select(-saledate_year, -year_valid) # Remove temporary validation columns
+
+# Step 12: Consolidate 'body' classifications
+vehicle_sales_clean <- vehicle_sales_clean |>
+  mutate(
+    body = str_to_lower(body),
+    body = case_when(
+      body %in% c("suv", "suvs") ~ "suv",
+      body %in% c("sedan", "g sedan") ~ "sedan",
+      body %in% c("convertible", "g convertible", "q60 convertible", 
+                  "beetle convertible", "genesis coupe", "granturismo convertible", 
+                  "g37 convertible") ~ "convertible",
+      body %in% c("coupe", "g coupe", "q60 coupe", "elantra coupe", 
+                  "cts coupe", "cts-v coupe", "g37 coupe", "koup") ~ "coupe",
+      body %in% c("wagon", "cts wagon", "tsx sport wagon", "cts-v wagon") ~ "wagon",
+      body %in% c("hatchback") ~ "hatchback",
+      body %in% c("minivan", "van", "transit van", "e-series van", 
+                  "promaster cargo van", "ram van") ~ "van",
+      body %in% c("crew cab", "double cab", "crewmax cab", "access cab", "king cab", 
+                  "supercrew", "regular cab", "regular-cab", "extended cab", "supercab", 
+                  "club cab", "xtracab", "cab plus 4", "cab plus", "quad cab", "mega cab") ~ "truck",
+      TRUE ~ body
+    ),
+    body = ifelse(is.na(body), "unknown", body)
+  )
+
+# Step 13: Save the cleaned dataset
+saveRDS(vehicle_sales_clean, file.path(path_output, "vehicle_sales_clean.rds"))
+cat("Step 13: Cleaned dataset saved to the output folder.\n")
+

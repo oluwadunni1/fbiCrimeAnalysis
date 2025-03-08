@@ -1,0 +1,27 @@
+{
+    "id": "8C5332FA",
+    "path": "~/DA projects/fbiCrimeAnalysis/scripts/01_data_import.R",
+    "project_path": "scripts/01_data_import.R",
+    "type": "r_source",
+    "hash": "168810089",
+    "contents": "",
+    "dirty": true,
+    "created": 1741423232190.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "17,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1740594427,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1741425167635,
+    "read_only": false,
+    "read_only_alternatives": []
+}

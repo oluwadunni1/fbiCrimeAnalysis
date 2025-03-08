@@ -1,0 +1,410 @@
+library(here)
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(lubridate) 
+library(scales) 
+library(ggthemes)
+library(knitr) 
+library(kableExtra)
+library(gt)
+
+# Define output directories and create if they don't exist
+output_tables_dir <- here::here("output/tables")
+output_visuals_dir <- here::here("output/visuals")
+dir.create(output_tables_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(output_visuals_dir, showWarnings = FALSE, recursive = TRUE)
+
+# Path to data
+path_data <- here::here("data/processed")
+agencies <- readRDS(file.path(path_data, "agencies_processed.rds"))
+
+# Compute national-level summary
+national_summary <- agencies |>
+  summarise(
+    total_agencies = n(),
+    nibrs_adopting = sum(is_nibrs, na.rm = TRUE),
+    non_nibrs = total_agencies - nibrs_adopting,
+    nibrs_percent = round((nibrs_adopting / total_agencies) * 100, 1)
+  )
+
+# Save national_summary as a table
+write.csv(national_summary, file.path(output_tables_dir, "national_summary.csv"), row.names = FALSE)
+national_summary_gt <- national_summary |> 
+  gt() |> 
+  tab_header(title = "National Summary of NIBRS Adoption") |> 
+  fmt_number(columns = c(total_agencies, nibrs_adopting, non_nibrs), decimals = 0) |> 
+  fmt_number(columns = nibrs_percent, decimals = 1, pattern = "{x}%") |> 
+  cols_label(
+    total_agencies = "Total Agencies",
+    nibrs_adopting = "Adopting Agencies",
+    non_nibrs = "Non-Adopting Agencies",
+    nibrs_percent = "% Adoption"
+  )
+gtsave(national_summary_gt, file.path(output_tables_dir, "national_summary.html"))
+
+# Summarize NIBRS adoption over the years
+nibrs_timeline <- agencies |>
+  filter(is_nibrs) |>
+  group_by(year) |>
+  summarise(
+    agencies_adopted = n()
+  ) |>
+  ungroup() |>
+  mutate(cumulative_adoption = cumsum(agencies_adopted))
+
+# Save nibrs_timeline as a table
+write.csv(nibrs_timeline, file.path(output_tables_dir, "nibrs_timeline.csv"), row.names = FALSE)
+nibrs_timeline_gt <- nibrs_timeline |> 
+  gt() |> 
+  tab_header(title = "NIBRS Adoption Timeline") |> 
+  fmt_number(columns = agencies_adopted, decimals = 0) |> 
+  cols_label(
+    year = "Year",
+    agencies_adopted = "Agencies Adopted",
+    cumulative_adoption = "Cumulative Adoption"
+  )
+gtsave(nibrs_timeline_gt, file.path(output_tables_dir, "nibrs_timeline.html"))
+
+# Plot cumulative adoption over time
+p1 <- ggplot(nibrs_timeline, aes(x = year, y = cumulative_adoption)) +
+  geom_line(color = "#505078", size = 1) +
+  geom_point(color = "#505078", size = 2) +  
+  labs(title = "Cumulative NIBRS Adoption Over Time",
+       x = "Year",
+       y = "Cumulative Adopting Agencies",
+       caption = "Source: FBI Crime Data") +
+  theme_minimal() +
+  theme(plot.caption = element_text(size = 9, color = "#666666", hjust = 0))
+ggsave(file.path(output_visuals_dir, "cumulative_adoption.png"), p1, width = 10, height = 6, dpi = 300)
+
+# Calculate total and adopting agencies by type
+agency_type_adoption <- agencies |>
+  group_by(agency_type) |>
+  summarise(
+    total = n(),
+    adopting = sum(is_nibrs == TRUE, na.rm = TRUE),
+    adoption_rate = (adopting / total) * 100
+  ) |>
+  arrange(desc(total))  
+
+# Plot NIBRS adoption by agency type
+p2 <- ggplot(agency_type_adoption, aes(y = reorder(agency_type, total))) +
+  geom_bar(aes(x = total), stat = "identity", fill = "lightgray", alpha = 0.5, width = 0.8) +
+  geom_bar(aes(x = adopting), stat = "identity", fill = "#505078", width = 0.4) +  
+  geom_text(aes(x = adopting, label = sprintf("%.1f%%", adoption_rate)), 
+            hjust = -0.2, size = 3.5, color = "black") +
+  labs(title = "NIBRS Adoption by Agency Type (Nationwide)",
+       x = "Number of Agencies",
+       y = NULL,
+       caption = "Source: FBI Crime Data") +
+  scale_x_continuous(labels = scales::comma, expand = expansion(mult = c(0, 0.15))) +  
+  theme_minimal() +
+  theme(plot.title = element_text(size = 12),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 9),
+        plot.caption = element_text(size = 9, color = "#666666", hjust = 0),
+        panel.grid.major = element_blank(),  
+        panel.grid.minor = element_blank(),  
+        axis.line = element_line(color = "black"))
+ggsave(file.path(output_visuals_dir, "agency_type_adoption.png"), p2, width = 10, height = 6, dpi = 300)
+
+# Compute state-level summary
+state_summary <- agencies |>
+  group_by(state) |>
+  summarise(
+    total_agencies = n(),
+    nibrs_adopting = sum(is_nibrs, na.rm = TRUE),
+    non_nibrs = total_agencies - nibrs_adopting,
+    nibrs_percent = (nibrs_adopting / total_agencies) * 100 
+  )
+
+# Save state_summary as a table
+write.csv(state_summary, file.path(output_tables_dir, "state_summary.csv"), row.names = FALSE)
+state_summary_gt <- state_summary |> 
+  gt() |> 
+  tab_header(title = "State-Level NIBRS Adoption Summary") |> 
+  fmt_number(columns = c(total_agencies, nibrs_adopting, non_nibrs), decimals = 0) |> 
+  fmt_number(columns = nibrs_percent, decimals = 1, pattern = "{x}%") |> 
+  cols_label(
+    state = "State",
+    total_agencies = "Total Agencies",
+    nibrs_adopting = "Adopting Agencies",
+    non_nibrs = "Non-Adopting Agencies",
+    nibrs_percent = "% Adoption"
+  )
+gtsave(state_summary_gt, file.path(output_tables_dir, "state_summary.html"))
+
+# Correlation test (output to console, not saved as table/plot)
+cor.test(state_summary$total_agencies, state_summary$nibrs_percent)
+
+# Plot correlation
+p3 <- ggplot(state_summary, aes(x = total_agencies, y = nibrs_percent)) +
+  geom_point(size = 2.5, color = "#6B6BA9", alpha = 0.7) + 
+  geom_smooth(method = "lm", color = "#2C3E50", fill = "#2C3E50", alpha = 0.1) +
+  annotate("segment", x = 1400, xend = 1450, y = 96, yend = 94.8, 
+           arrow = arrow(length = unit(0.1, "cm")), color = "black") +
+  annotate("text", x = 1400, y = 96, label = "TX", hjust = 1, vjust = 0.5, 
+           color = "black", size = 3.5) +
+  annotate("segment", x = 1400, xend = 1450, y = 15, yend = 13.5, 
+           arrow = arrow(length = unit(0.1, "cm")), color = "black") +
+  annotate("text", x = 1400, y = 15, label = "PA", hjust = 1, vjust = 0.5, 
+           color = "black", size = 3.5) +
+  labs(
+    title = "Correlation: Agency Count & NIBRS Adoption ",
+    caption = "Source: FBI Crime Data",
+    x = "Number of Law Enforcement Agencies",
+    y = "NIBRS Adoption Rate (%)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12),
+    axis.title = element_text(size = 9.5, face = "plain"),
+    axis.text = element_text(size = 9),
+    plot.caption = element_text(size = 9, color = "#666666", hjust = 0),
+    panel.grid = element_blank(),
+    panel.border = element_blank(),
+    axis.line = element_line(color = "black", size = 0.3),
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
+ggsave(file.path(output_visuals_dir, "agency_correlation.png"), p3, width = 10, height = 6, dpi = 300)
+
+# Bottom 3 states by adoption rate
+bottom_state_summary <- state_summary |>
+  arrange(nibrs_percent) |>  
+  slice_head(n = 3)
+
+# Save bottom_state_summary as a table
+write.csv(bottom_state_summary, file.path(output_tables_dir, "bottom_state_summary.csv"), row.names = FALSE)
+bottom_state_summary_gt <- bottom_state_summary |> 
+  gt() |> 
+  tab_header(title = "", subtitle = md("*Bottom 3 States by Adoption Rate*")) |> 
+  fmt_number(columns = c(total_agencies, nibrs_adopting, non_nibrs), decimals = 0) |> 
+  fmt_number(columns = nibrs_percent, decimals = 1, pattern = "{x}%") |> 
+  cols_label(
+    state = "State",
+    total_agencies = "Total Agencies",
+    nibrs_adopting = "Adopting Agencies",
+    non_nibrs = "Non-Adopting Agencies",
+    nibrs_percent = "% Adoption"
+  ) |> 
+  cols_width(
+    state ~ px(150),
+    total_agencies ~ px(150),
+    nibrs_adopting ~ px(180),
+    non_nibrs ~ px(200),
+    nibrs_percent ~ px(120)
+  ) |> 
+  cols_align(align = "left", columns = state) |> 
+  cols_align(align = "right", columns = c(total_agencies, nibrs_adopting, non_nibrs, nibrs_percent)) |> 
+  tab_style(style = list(cell_fill(color = "#f8f9fa"), cell_text(weight = "bold")), locations = cells_column_labels()) |> 
+  tab_style(style = cell_borders(sides = c("top", "bottom"), color = "#dee2e6", weight = px(1)), locations = cells_body()) |> 
+  tab_options(table.border.top.style = "hidden", table.border.bottom.style = "hidden", column_labels.border.bottom.width = px(2), column_labels.border.bottom.color = "#495057", row_group.border.top.width = px(2), row_group.border.top.color = "#495057", column_labels.padding = px(10), data_row.padding = px(8)) |> 
+  data_color(columns = nibrs_percent, colors = scales::col_numeric(palette = c("#e84a5f", "#ff8a5c", "#ffd166", "#b5e48c", "#76c893", "#239604"), domain = c(10, 80))) |> 
+  tab_style(style = list(cell_text(color = "white")), locations = cells_body(columns = nibrs_percent, rows = nibrs_percent < 25 | nibrs_percent > 70)) |> 
+  tab_style(style = list(cell_text(color = "black")), locations = cells_body(columns = nibrs_percent, rows = nibrs_percent >= 25 & nibrs_percent <= 70)) |> 
+  opt_row_striping()
+gtsave(bottom_state_summary_gt, file.path(output_tables_dir, "bottom_state_summary.html"))
+
+# Filter for PA, NY, FL
+states_of_interest <- c("Pennsylvania", "New York", "Florida")
+subset <- agencies |> filter(state %in% states_of_interest)
+
+# Clean years and filter adopters
+adopters <- subset |> 
+  filter(!is.na(year) & year >= 1985 & year <= 2024 & is_nibrs == TRUE) |> 
+  mutate(year = as.integer(year))
+
+# Aggregate by state and year for PA, NY, FL
+adoption_counts <- adopters |> 
+  group_by(state, year) |> 
+  summarise(adoption_count = n(), .groups = 'drop')
+
+# Expand to full year range and calculate cumulative adoption
+all_years <- expand.grid(state = states_of_interest, year = 2012:2024)
+full_data <- all_years |> 
+  left_join(adoption_counts, by = c("state", "year")) |> 
+  mutate(adoption_count = replace(adoption_count, is.na(adoption_count), 0)) |> 
+  group_by(state) |> 
+  mutate(cumulative_adoption = cumsum(adoption_count)) |> 
+  ungroup()
+
+# Add state abbreviations for annotation
+state_abbr <- c("Pennsylvania" = "PA", "New York" = "NY", "Florida" = "FL")
+end_data <- full_data |> 
+  filter(year == max(year)) |> 
+  mutate(state_abbr = state_abbr[state])
+
+# Define a professional color palette
+state_colors <- c("Pennsylvania" = "#1F77B4",  
+                  "New York" = "#D62728",      
+                  "Florida" = "#2CA02C")       
+
+# Plot cumulative adoption for PA, NY, FL
+p4 <- ggplot(full_data, aes(x = year, y = cumulative_adoption, color = state, group = state)) +
+  geom_hline(yintercept = seq(0, 200, by = 25), color = "gray90", size = 0.2) +
+  geom_vline(xintercept = seq(2012, 2024, by = 1), color = "gray90", size = 0.2) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2.5) +
+  geom_text(data = end_data, aes(label = state_abbr), 
+            hjust = -0.3, vjust = 0.5, fontface = "bold", size = 3.5) +
+  scale_color_manual(values = state_colors) +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, 200, by = 25), expand = expansion(mult = c(0.02, 0.15))) +
+  scale_x_continuous(breaks = seq(2012, 2024, by = 2), minor_breaks = seq(2012, 2024, by = 1), limits = c(2012, 2024.5)) +
+  labs(
+    title = "Cumulative NIBRS Adoption in The Bottom Three (2012–2024)",
+    x = "Year",
+    y = "Number of Adopting Agencies",
+    caption = "Source: FBI Crime Data"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(family = "Arial"),
+    plot.title = element_text(size = 12, margin = margin(b = 8)),
+    plot.caption = element_text(size = 9, color = "#666666", hjust = 0),
+    panel.grid.major = element_line(color = "gray95", size = 0.3),
+    panel.grid.minor = element_blank(),
+    panel.background = element_rect(fill = "white", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    axis.title.x = element_text(size = 10, margin = margin(t = 10), color = "gray20"),
+    axis.title.y = element_text(size = 10, margin = margin(r = 10), color = "gray20"),
+    axis.text = element_text(size = 9, color = "gray30"),
+    axis.ticks = element_line(size = 0.3, color = "gray70"),
+    axis.line = element_line(size = 0.3, color = "gray70"),
+    legend.position = "none",
+    plot.margin = margin(t = 15, r = 15, b = 15, l = 15)
+  )
+ggsave(file.path(output_visuals_dir, "bottom_three_adoption.png"), p4, width = 10, height = 6, dpi = 300)
+
+# Define agency types with "Other State Agencies" last (excluding Tribal for PA)
+agency_types_pa <- c("City", "County", "State Police", "University or College", "Other State Agencies")
+agency_types_ny_fl <- c("City", "County", "State Police", "Tribal", "University or College", "Other State Agencies")
+
+# Pennsylvania Data Frame
+pennsylvania_data <- agencies |> 
+  filter(state == "Pennsylvania", agency_type != "Tribal") |> 
+  group_by(agency_type) |> 
+  summarise(
+    total_count = n(),
+    count_adopting_nibrs = sum(is_nibrs == TRUE, na.rm = TRUE),
+    .groups = 'drop'
+  ) |> 
+  complete(agency_type = agency_types_pa, fill = list(total_count = 0, count_adopting_nibrs = 0)) |> 
+  mutate(
+    count_non_adopting = total_count - count_adopting_nibrs,
+    adoption_rate = (count_adopting_nibrs / total_count) * 100
+  ) |> 
+  mutate(adoption_rate = replace(adoption_rate, is.nan(adoption_rate), 0)) |> 
+  arrange(match(agency_type, agency_types_pa))
+
+# Save pennsylvania_data as a table
+write.csv(pennsylvania_data, file.path(output_tables_dir, "pennsylvania_data.csv"), row.names = FALSE)
+pennsylvania_table <- pennsylvania_data |> 
+  gt() |> 
+  tab_header(title = "", subtitle = md("*Pennsylvania: Agency-Type Distribution*")) |> 
+  fmt_number(columns = c(total_count, count_adopting_nibrs, count_non_adopting), decimals = 0) |> 
+  fmt_number(columns = adoption_rate, decimals = 1, pattern = "{x}%") |> 
+  cols_label(
+    agency_type = "Agency Type",
+    total_count = "Total Count",
+    count_adopting_nibrs = "Adopting NIBRS",
+    count_non_adopting = "Non-Adopting Count",
+    adoption_rate = "% Adoption"
+  ) |> 
+  cols_width(agency_type ~ px(150), total_count ~ px(150), count_adopting_nibrs ~ px(180), count_non_adopting ~ px(200), adoption_rate ~ px(120)) |> 
+  cols_align(align = "left", columns = agency_type) |> 
+  cols_align(align = "right", columns = c(total_count, count_adopting_nibrs, count_non_adopting, adoption_rate)) |> 
+  tab_style(style = list(cell_fill(color = "#f8f9fa"), cell_text(weight = "bold")), locations = cells_column_labels()) |> 
+  tab_style(style = cell_borders(sides = c("top", "bottom"), color = "#dee2e6", weight = px(1)), locations = cells_body()) |> 
+  tab_options(table.border.top.style = "hidden", table.border.bottom.style = "hidden", column_labels.border.bottom.width = px(2), column_labels.border.bottom.color = "#495057", row_group.border.top.width = px(2), row_group.border.top.color = "#495057", column_labels.padding = px(10), data_row.padding = px(8)) |> 
+  data_color(columns = adoption_rate, colors = scales::col_numeric(palette = c("#d73027", "#f46d43", "#fdae61", "#d9ef8b", "#66bb6a", "#1a9850"), domain = c(0, 100))) |> 
+  tab_style(style = list(cell_text(color = "white")), locations = cells_body(columns = adoption_rate, rows = adoption_rate < 25 | adoption_rate > 70)) |> 
+  tab_style(style = list(cell_text(color = "black")), locations = cells_body(columns = adoption_rate, rows = adoption_rate >= 25 & adoption_rate <= 70)) |> 
+  opt_row_striping()
+gtsave(pennsylvania_table, file.path(output_tables_dir, "pennsylvania_table.html"))
+
+# New York Data Frame
+new_york_data <- agencies |> 
+  filter(state == "New York") |> 
+  group_by(agency_type) |> 
+  summarise(
+    total_count = n(),
+    count_adopting_nibrs = sum(is_nibrs == TRUE, na.rm = TRUE),
+    .groups = 'drop'
+  ) |> 
+  complete(agency_type = agency_types_ny_fl, fill = list(total_count = 0, count_adopting_nibrs = 0)) |> 
+  mutate(
+    count_non_adopting = total_count - count_adopting_nibrs,
+    adoption_rate = (count_adopting_nibrs / total_count) * 100
+  ) |> 
+  mutate(adoption_rate = replace(adoption_rate, is.nan(adoption_rate), 0)) |> 
+  arrange(match(agency_type, agency_types_ny_fl))
+
+# Save new_york_data as a table
+write.csv(new_york_data, file.path(output_tables_dir, "new_york_data.csv"), row.names = FALSE)
+new_york_table <- new_york_data |> 
+  gt() |> 
+  tab_header(title = "", subtitle = md("*New York: Agency-Type Distribution*")) |> 
+  fmt_number(columns = c(total_count, count_adopting_nibrs, count_non_adopting), decimals = 0) |> 
+  fmt_number(columns = adoption_rate, decimals = 1, pattern = "{x}%") |> 
+  cols_label(
+    agency_type = "Agency Type",
+    total_count = "Total Count",
+    count_adopting_nibrs = "Adopting NIBRS",
+    count_non_adopting = "Non-Adopting Count",
+    adoption_rate = "% Adoption"
+  ) |> 
+  cols_width(agency_type ~ px(150), total_count ~ px(150), count_adopting_nibrs ~ px(180), count_non_adopting ~ px(200), adoption_rate ~ px(120)) |> 
+  cols_align(align = "left", columns = agency_type) |> 
+  cols_align(align = "right", columns = c(total_count, count_adopting_nibrs, count_non_adopting, adoption_rate)) |> 
+  tab_style(style = list(cell_fill(color = "#f8f9fa"), cell_text(weight = "bold")), locations = cells_column_labels()) |> 
+  tab_style(style = cell_borders(sides = c("top", "bottom"), color = "#dee2e6", weight = px(1)), locations = cells_body()) |> 
+  tab_options(table.border.top.style = "hidden", table.border.bottom.style = "hidden", column_labels.border.bottom.width = px(2), column_labels.border.bottom.color = "#495057", row_group.border.top.width = px(2), row_group.border.top.color = "#495057", column_labels.padding = px(10), data_row.padding = px(8)) |> 
+  data_color(columns = adoption_rate, colors = scales::col_numeric(palette = c("#d73027", "#f46d43", "#fdae61", "#d9ef8b", "#66bb6a", "#1a9850"), domain = c(0, 100))) |> 
+  tab_style(style = list(cell_text(color = "white")), locations = cells_body(columns = adoption_rate, rows = adoption_rate < 25 | adoption_rate > 70)) |> 
+  tab_style(style = list(cell_text(color = "black")), locations = cells_body(columns = adoption_rate, rows = adoption_rate >= 25 & adoption_rate <= 70)) |> 
+  opt_row_striping()
+gtsave(new_york_table, file.path(output_tables_dir, "new_york_table.html"))
+
+# Florida Data Frame
+florida_data <- agencies |> 
+  filter(state == "Florida") |> 
+  group_by(agency_type) |> 
+  summarise(
+    total_count = n(),
+    count_adopting_nibrs = sum(is_nibrs == TRUE, na.rm = TRUE),
+    .groups = 'drop'
+  ) |> 
+  complete(agency_type = agency_types_ny_fl, fill = list(total_count = 0, count_adopting_nibrs = 0)) |> 
+  mutate(
+    count_non_adopting = total_count - count_adopting_nibrs,
+    adoption_rate = (count_adopting_nibrs / total_count) * 100
+  ) |> 
+  mutate(adoption_rate = replace(adoption_rate, is.nan(adoption_rate), 0)) |> 
+  arrange(match(agency_type, agency_types_ny_fl))
+
+# Save florida_data as a table
+write.csv(florida_data, file.path(output_tables_dir, "florida_data.csv"), row.names = FALSE)
+florida_table <- florida_data |> 
+  gt() |> 
+  tab_header(title = "", subtitle = md("*Florida: Agency-Type Distribution*")) |> 
+  fmt_number(columns = c(total_count, count_adopting_nibrs, count_non_adopting), decimals = 0) |> 
+  fmt_number(columns = adoption_rate, decimals = 1, pattern = "{x}%") |> 
+  cols_label(
+    agency_type = "Agency Type",
+    total_count = "Total Count",
+    count_adopting_nibrs = "Adopting NIBRS",
+    count_non_adopting = "Non-Adopting Count",
+    adoption_rate = "% Adoption"
+  ) |> 
+  cols_width(agency_type ~ px(150), total_count ~ px(150), count_adopting_nibrs ~ px(180), count_non_adopting ~ px(200), adoption_rate ~ px(120)) |> 
+  cols_align(align = "left", columns = agency_type) |> 
+  cols_align(align = "right", columns = c(total_count, count_adopting_nibrs, count_non_adopting, adoption_rate)) |> 
+  tab_style(style = list(cell_fill(color = "#f8f9fa"), cell_text(weight = "bold")), locations = cells_column_labels()) |> 
+  tab_style(style = cell_borders(sides = c("top", "bottom"), color = "#dee2e6", weight = px(1)), locations = cells_body()) |> 
+  tab_options(table.border.top.style = "hidden", table.border.bottom.style = "hidden", column_labels.border.bottom.width = px(2), column_labels.border.bottom.color = "#495057", row_group.border.top.width = px(2), row_group.border.top.color = "#495057", column_labels.padding = px(10), data_row.padding = px(8)) |> 
+  data_color(columns = adoption_rate, colors = scales::col_numeric(palette = c("#d73027", "#f46d43", "#fdae61", "#d9ef8b", "#a6d96a", "#1a9850"), domain = c(0, 100))) |> 
+  tab_style(style = list(cell_text(color = "white")), locations = cells_body(columns = adoption_rate, rows = adoption_rate < 25 | adoption_rate > 70)) |> 
+  tab_style(style = list(cell_text(color = "black")), locations = cells_body(columns = adoption_rate, rows = adoption_rate >= 25 & adoption_rate <= 70)) |> 
+  opt_row_striping()
+gtsave(florida_table, file.path(output_tables_dir, "florida_table.html"))

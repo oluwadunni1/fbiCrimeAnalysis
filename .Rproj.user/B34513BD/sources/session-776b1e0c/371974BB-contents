@@ -1,0 +1,134 @@
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+library(maps)
+library(stringr)
+library(scales)
+library(patchwork)
+
+# Assuming your data is in a dataframe called 'agency_data'
+
+# Calculate NIBRS adoption percentage by state and count total agencies
+nibrs_by_state <- agency_data %>%
+  group_by(state, state_abbr) %>%
+  summarize(
+    total_agencies = n(),
+    nibrs_agencies = sum(is_nibrs, na.rm = TRUE),
+    adoption_rate = round(nibrs_agencies / total_agencies * 100, 1),
+    .groups = "drop"
+  )
+
+# Get state map data
+states_map <- map_data("state")
+
+# Convert state names to lowercase for consistent joining
+states_map$state <- tolower(states_map$region)
+nibrs_by_state$state <- tolower(nibrs_by_state$state)
+
+# Join NIBRS data with map data
+map_data <- left_join(states_map, nibrs_by_state, by = "state") %>%
+  filter(!is.na(total_agencies))  # Remove NA values
+
+# **Improved Color Palette**
+color_palette <- scale_fill_gradient(
+  low = "#FFFFB2",   # Light yellow for lower adoption
+  high = "#BD0026",  # Deep red for high adoption
+  name = "Agency Count",
+  labels = comma_format(),  # Format numbers
+  breaks = pretty_breaks(n = 5)  
+)
+
+# Create the main map
+p <- ggplot(map_data, aes(x = long, y = lat, group = group, fill = total_agencies)) +
+  geom_polygon(color = "white", size = 0.3) +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
+  color_palette +
+  theme_minimal() +
+  labs(
+    title = "Which States Have the Highest NIBRS Adoption?",
+    subtitle = "NIBRS Adoption as a Percentage of State Law Enforcement Agencies, Current Data"
+  ) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 12),
+    plot.margin = margin(t = 10, r = 10, b = 30, l = 10)
+  )
+
+# Compute state label positions (centers)
+state_centers <- map_data %>%
+  group_by(state, state_abbr, adoption_rate, total_agencies) %>%
+  summarize(
+    long = mean(range(long)),
+    lat = mean(range(lat)),
+    .groups = "drop"
+  )
+
+# Define small states for separate inset
+small_states <- c("rhode island", "connecticut", "delaware", "maryland", 
+                  "new jersey", "massachusetts", "new hampshire", "vermont")
+
+# Labels for the main map (excluding small northeastern states)
+main_labels <- state_centers %>% filter(!(state %in% small_states))
+
+# Add state labels with adjusted font size and overlap prevention
+p <- p + 
+  geom_text(
+    data = main_labels,
+    aes(x = long, y = lat, label = paste0(state_abbr, "\n", adoption_rate, "%")),
+    inherit.aes = FALSE,
+    size = 3.5,  # Increased size for readability
+    fontface = "bold",
+    color = "black",
+    check_overlap = TRUE
+  )
+
+# **Fix Small-State Color Matching Issue**
+# Use correct `fill` mapping to ensure small states match the main map's color scale
+small_state_data <- nibrs_by_state %>%
+  filter(state %in% small_states) %>%
+  arrange(state) %>%
+  mutate(
+    y_pos = rev(seq_along(state)) * 2.2,  # Increased spacing
+    x_pos = 1
+  )
+
+# Create small-state inset (box layout)
+small_states_box <- ggplot(small_state_data, aes(xmin = x_pos - 0.4, xmax = x_pos + 0.4, 
+                                                 ymin = y_pos - 0.4, ymax = y_pos + 0.4, 
+                                                 fill = total_agencies)) +
+  geom_rect(color = "white") +
+  geom_text(aes(x = x_pos + 0.6, y = y_pos, label = paste0(state_abbr, " ", adoption_rate, "%")),
+            hjust = 0, size = 3.5, fontface = "bold") +
+  color_palette +  # Ensures color scale consistency
+  theme_void() +
+  theme(legend.position = "none") +
+  coord_fixed(xlim = c(0.5, 3.5), ylim = c(0.5, length(small_states) * 2.2 + 0.5))
+
+# **Custom Legend for Agency Counts**
+legend_plot <- ggplot() +
+  color_palette +
+  guides(fill = guide_colorbar(
+    barwidth = 12, 
+    barheight = 0.8, 
+    title.position = "top",
+    title.hjust = 0.5
+  )) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# **Final Map with Small-State Inset**
+final_plot <- p + 
+  inset_element(small_states_box, left = 0.7, bottom = 0.05, right = 0.95, top = 0.4) +
+  plot_annotation(
+    caption = "Notes: Figures show the percentage of law enforcement agencies in each state that report crime data\nusing the National Incident-Based Reporting System (NIBRS).\nSource: FBI Crime Data API | Visualization created in R",
+    theme = theme(plot.caption = element_text(size = 8, hjust = 0))
+  )
+
+# Display the plot
+final_plot
+
+write.csv(state_summary, "output/agency_summary_by_state.csv", row.names = FALSE)
