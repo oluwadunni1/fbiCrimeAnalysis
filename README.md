@@ -23,12 +23,12 @@ This repository contains the analysis and report on NIBRS adoption across U.S. l
 
 ## How to Use
 
-1.  Clone the repository: \`git clone\` [https://github.com/oluwadunni1/fbiCrimeAnalysis.git](https://github.com/oluwadunni1/fbiCrimeAnalysis.git)
-2.  View the final report: Open \`docs/FBI_crime_analysis.html\` in a web browser.
+1.  Clone the repository:  `git clone`  [https://github.com/oluwadunni1/fbiCrimeAnalysis.git](https://github.com/oluwadunni1/fbiCrimeAnalysis.git)
+2.  View the final report: Open `docs/FBI_crime_analysis.html` in a web browser.
 3.  To reproduce the report:
     -   Ensure R and Quarto are installed.
-    -   Run the scripts in order (\`scripts/01_data_import.R\` → \`scripts/02_data_cleaning.R\` → \`scripts/03_analysis.R\`).
-    -   Render the Quarto report: \`quarto render docs/FBI_crime_analysis.qmd --to html\`
+    -   Run the scripts in order (`scripts/01_data_import.R` → `scripts/02_data_cleaning.R` → `scripts/03_analysis.R`).
+    -   Render the Quarto report: `quarto render docs/FBI_crime_analysis.qmd --to html`
 
 ## Requirements
 
