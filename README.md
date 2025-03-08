@@ -1,6 +1,6 @@
 # FBI Crime Analysis: NIBRS Adoption Project
 
-This repository contains the analysis and report on NIBRS adoption across U.S. law enforcement agencies, examining nationwide trends, regional disparities, and state-level challenges as of March 2025. This project was part of [TidyTuesday](https://github.com/rfordatascience/tidytuesday), a weekly social data project, for the week of February 18, 2025. The dataset used in this analysis was sourced from the TidyTuesday repository for that week: [TidyTuesday 2025/02/18](https://github.com/rfordatascience/tidytuesday/tree/master/data/2025/2025-02-18).
+This repository contains the analysis and report on NIBRS adoption across U.S. law enforcement agencies, examining nationwide trends, regional disparities, and state-level challenges. This project was part of [TidyTuesday](https://github.com/rfordatascience/tidytuesday), a weekly social data project, for the week of February 18, 2025. The dataset used in this analysis was sourced from the TidyTuesday repository for that week: [TidyTuesday 2025/02/18](https://github.com/rfordatascience/tidytuesday/tree/master/data/2025/2025-02-18).
 
 ## Project Structure
 
