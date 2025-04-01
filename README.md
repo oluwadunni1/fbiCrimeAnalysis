@@ -22,7 +22,7 @@ This repository contains the analysis and report on NIBRS adoption across U.S. l
     -   `visuals/`: Plot outputs (PNG).
 
 ## How to Use
-1. View the Final Report Online: Visit the rendered report hosted on GitHub Pages: [https://oluwadunni1.github.io/fbiCrimeAnalysis/](https://oluwadunni1.github.io/fbiCrimeAnalysis/).  
+1. View the Final Report Online: Visit the rendered report hosted on GitHub Pages: [View Report](https://oluwadunni1.github.io/fbiCrimeAnalysis/).  
 2.  Clone the repository:  `git clone`  [https://github.com/oluwadunni1/fbiCrimeAnalysis.git](https://github.com/oluwadunni1/fbiCrimeAnalysis.git)
 3.  To reproduce the report:
     -   Ensure R and Quarto are installed.
